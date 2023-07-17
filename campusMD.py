@@ -43,7 +43,7 @@ def SearchCita():
     diccCitas = LoadDataCitas("Citas.json")
     save = []
     cont = 1
-    if core.CheckData("Citas.json"):
+    if len(diccCitas["data"]) >=1:
         print('+','-'*56,"+")
         print('|{:^58}|'.format('AGREGAR CITA'))
         print('+','-'*56,"+")
@@ -83,7 +83,7 @@ def EditCita():
     diccCitas = LoadDataCitas("Citas.json")
     edit = True
     save = []
-    if core.CheckData("Citas.json"):
+    if len(diccCitas["data"]) >=1:
         print('+','-'*66,"+")
         print('|{:^68}|'.format('EDITAR CITA'))
         print('+','-'*66,"+")
@@ -139,7 +139,7 @@ def EditCita():
 def CancelCita():
     diccCitas = LoadDataCitas("Citas.json")
     save = []
-    if core.CheckData("Citas.json"):
+    if len(diccCitas["data"]) >=1:
         print('+','-'*66,"+")
         print('|{:^68}|'.format('CANCELAR CITA'))
         print('+','-'*66,"+")
@@ -162,22 +162,26 @@ def CancelCita():
         if (int(input("> "))==1):
             diccCitas["data"].remove(search)
             core.EditarData("Citas.json",diccCitas)
+    else:
+        print('+','-'*56,"+")   
+        print('|{:^58}|'.format('NO EXISTEN CITAS'))
+        print('+','-'*56,"+") 
 
 if __name__ == '__main__':
     opc = 0
     run = True
     menu = ["Agregar Cita","Buscar Cita","Modificar Cita","Cancelar Cita","Salir"]
     while run:
-        clearbar()
-        print('+','-'*36,"+")
-        print('|{:^38}|'.format('MENU CITAS CAMPUSMD'))
-        print('+','-'*36,"+")
         try:
+            clearbar()
+            print('+','-'*36,"+")
+            print('|{:^38}|'.format('MENU CITAS CAMPUSMD'))
+            print('+','-'*36,"+")
             for i, item in enumerate(menu):
                 print('|{:^5}|{:^32}|'.format(i+1, item))
                 print('+','-'*36,"+")
             opc = int(input("> "))
-            clearbar()  
+            clearbar()
             if opc == 1:
                 AddCita()
             elif opc == 2:
@@ -200,5 +204,3 @@ if __name__ == '__main__':
         else:
             input("presione Enter para continuar...")
     
-
-

@@ -22,13 +22,19 @@
             "Nombre": "Johlver",
             "Fecha": "12/07/2023",
             "Hora": "11:07",
-            "Motivo": "El centro médico CampusMd desea crear un programa que permita gestionar citas médicas para un consultorio. El programa deberá permitir agregar, buscar, modificar y cancelar citas médicas, y guardar la información en archivos JSON."
+            "Motivo": "El centro m\u00e9dico CampusMd desea crear un programa que permita gestionar citas m\u00e9dicas para un consultorio. El programa deber\u00e1 permitir agregar, buscar, modificar y cancelar citas m\u00e9dicas, y guardar la informaci\u00f3n en archivos JSON."
         },
         {
             "Nombre": "Cristian",
             "Fecha": "15/08/2021",
             "Hora": "4:00",
             "Motivo": "Impacto de bala"
+        },
+        {
+            "Nombre": "Pepe",
+            "Fecha": "14/10/2005",
+            "Hora": "21:00",
+            "Motivo": "Hematoma"
         }
     ]
 }

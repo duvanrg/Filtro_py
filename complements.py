@@ -5,7 +5,6 @@ def VerifyDate(date):
     days30 = [4, 6, 9, 11]
     try:
         info = date.split('/')
-        print(date)
         if len(info)!= 3:
             return False
         if not info[0].isdigit():

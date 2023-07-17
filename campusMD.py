@@ -80,7 +80,7 @@ def SearchCita():
                             band = 0
                         modi = item[key].split(' ')
 
-                        for c in range(1, len(modi), 6):
+                        for c in range(0, len(modi), 6):
                             n = ' '
                             text = modi[c:c+6]
                             print('|{:^58}|'.format(n.join(text)))
@@ -99,16 +99,28 @@ def EditCita():
     edit = True
     save = []
     if len(diccCitas["data"]) >=1:
-        print('+','-'*66,"+")
-        print('|{:^68}|'.format('EDITAR CITA'))
-        print('+','-'*66,"+")
-        print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^27}|'.format("nro","Nombre","Fecha","Hora","Motivo"))
-        print('+','-'*66,"+")
+        print('+','-'*68,"+")
+        print('|{:^70}|'.format('EDITAR CITA'))
+        print('+','-'*68,"+")
+        print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^29}|'.format("nro","Nombre","Fecha","Hora","Motivo"))
+        print('+','-'*68,"+")
         for i, item in enumerate(diccCitas["data"]):
-            print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^27}|'.format(i+1, item["Nombre"], item["Fecha"], item["Hora"], item["Motivo"]))
-            print('+','-'*66,"+")
-        print('|{:^68}|'.format('Ingrese el numero(nro) del paciente'))
-        print('+','-'*66,"+")
+            if (len(item["Motivo"])>26):
+                modi = item["Motivo"].split(' ')
+                for c in range(0, len(modi), 4):
+                    n = ' '
+                    t = modi[c:c+4]
+                    motivo = n.join(t)
+                    motivo += "..."
+                    break
+                    
+                print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^29}|'.format(i+1, item["Nombre"], item["Fecha"], item["Hora"],motivo))
+                print('+','-'*68,"+")
+            else:
+                print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^29}|'.format(i+1, item["Nombre"], item["Fecha"], item["Hora"], item["Motivo"]))
+                print('+','-'*68,"+")
+        print('|{:^70}|'.format('Ingrese el numero(nro) del paciente'))
+        print('+','-'*68,"+")
         search = diccCitas["data"][int(input("> "))-1]
         clearbar()
         while edit:
@@ -155,16 +167,28 @@ def CancelCita():
     diccCitas = LoadDataCitas("Citas.json")
     save = []
     if len(diccCitas["data"]) >=1:
-        print('+','-'*66,"+")
-        print('|{:^68}|'.format('CANCELAR CITA'))
-        print('+','-'*66,"+")
-        print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^27}|'.format("nro","Nombre","Fecha","Hora","Motivo"))
-        print('+','-'*66,"+")
+        print('+','-'*68,"+")
+        print('|{:^70}|'.format('CANCELAR CITA'))
+        print('+','-'*68,"+")
+        print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^29}|'.format("nro","Nombre","Fecha","Hora","Motivo"))
+        print('+','-'*68,"+")
         for i, item in enumerate(diccCitas["data"]):
-            print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^27}|'.format(i+1, item["Nombre"], item["Fecha"], item["Hora"], item["Motivo"]))
-            print('+','-'*66,"+")
-        print('|{:^68}|'.format('Ingrese el numero(nro) del paciente'))
-        print('+','-'*66,"+")
+            if (len(item["Motivo"])>26):
+                modi = item["Motivo"].split(' ')
+                for c in range(0, len(modi), 4):
+                    n = ' '
+                    t = modi[c:c+4]
+                    motivo = n.join(t)
+                    motivo += "..."
+                    break
+                    
+                print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^29}|'.format(i+1, item["Nombre"], item["Fecha"], item["Hora"],motivo))
+                print('+','-'*68,"+")
+            else:
+                print('|{:^5}|{:^15}|{:^10}|{:^7}|{:^29}|'.format(i+1, item["Nombre"], item["Fecha"], item["Hora"], item["Motivo"]))
+                print('+','-'*68,"+")
+        print('|{:^70}|'.format('Ingrese el numero(nro) del paciente'))
+        print('+','-'*68,"+")
         search = diccCitas["data"][int(input("> "))-1]
         clearbar()
         print('+','-'*66,"+")

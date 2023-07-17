@@ -65,14 +65,29 @@ def SearchCita():
                 return False
         clearbar()
         cont = 1
+        band = 1
         for i, item in enumerate(diccCitas["data"]):
             if item[select] == search:   
-                print('\n+','-'*36,"+")
-                print('|{:^38}|'.format(f'PACIENTE {cont}'))
-                print('+','-'*36,"+")
+                print('\n+','-'*56,"+")
+                print('|{:^58}|'.format(f'PACIENTE {cont}'))
+                print('+','-'*56,"+")
                 for key in diccCitas["data"][0]:
-                    print('|{:^8}|{:^29}|'.format(key, item[key]))
-                    print('+','-'*36,"+")
+                    if (key == "Motivo") and (len(item[key])>50):
+                        if band == 1:
+                            print('+','-'*56,"+")
+                            print('|{:^58}|'.format(key))
+                            print('+','-'*56,"+")
+                            band = 0
+                        modi = item[key].split(' ')
+
+                        for c in range(1, len(modi), 6):
+                            n = ' '
+                            text = modi[c:c+6]
+                            print('|{:^58}|'.format(n.join(text)))
+                        print('+','-'*56,"+")
+                    else:
+                        print('|{:^8}|{:^49}|'.format(key, item[key]))
+                        print('+','-'*56,"+")
                 cont += 1
     else:
         print('+','-'*56,"+")   
@@ -127,7 +142,7 @@ def EditCita():
             else:
                 var = str(input(f"nuevo {select}: ")).title()
             diccCitas["data"][diccCitas["data"].index(search)][select] = var
-            print("Desea modificar otro dato?","1. Si","2. No",sep="\n")
+            print("¿Desea modificar otro dato?","1. Si","2. No",sep="\n")
             if (int(input("> "))==2) or select == False:
                 edit = False
         core.EditarData("Citas.json",diccCitas)
@@ -158,7 +173,7 @@ def CancelCita():
         for key, data in search.items():
                 print('|{:^22}|{:^25}|'.format(key, data))
                 print('+','-'*46,"+")
-        print("Desea cancelar la cita?","1. Si","2. No",sep="\n")
+        print("¿Confirma la cancelacion de la cita?","1. Si","2. No",sep="\n")
         if (int(input("> "))==1):
             diccCitas["data"].remove(search)
             core.EditarData("Citas.json",diccCitas)
